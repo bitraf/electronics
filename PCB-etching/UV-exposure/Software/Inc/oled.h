@@ -50,6 +50,10 @@
 #define _swap_int16_t(a, b) { int16_t t = a; a = b; b = t; }
 #endif
 
+void oled_draw_string(int16_t xMove, int16_t yMove, char* text, uint16_t textLength, const char *data);
+void oled_clear();
+void oled_show_buffer();
+
 enum OLEDDISPLAY_COLOR {
   BLACK = 0,
   WHITE = 1,

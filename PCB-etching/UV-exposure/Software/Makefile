@@ -60,12 +60,9 @@ C_SOURCES =  \
 Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim_ex.c \
 Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash_ex.c \
 Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c.c \
-Src/usb_device.c \
 Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c \
-Src/usbd_desc.c \
 Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c \
 Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c \
-Src/usbd_dfu_if.c \
 Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c \
 Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pwr_ex.c \
 Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_spi.c \
@@ -79,14 +76,18 @@ Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal.c \
 Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_spi_ex.c \
 Middlewares/ST/STM32_USB_Device_Library/Class/DFU/Src/usbd_dfu.c \
 Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c \
-Src/stm32f0xx_it.c \
-Src/main.c \
 Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.c \
 Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c \
-Src/system_stm32f0xx.c \
-Src/stm32f0xx_hal_msp.c \
+Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c \
+Src/main.c \
 Src/usbd_conf.c \
-Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c
+Src/usbd_desc.c \
+Src/usb_device.c \
+Src/stm32f0xx_hal_msp.c \
+Src/system_stm32f0xx.c \
+Src/stm32f0xx_it.c \
+Src/usbd_dfu_if.c \
+Src/oled.c
 
 # ASM sources
 ASM_SOURCES =  \
