@@ -1,5 +1,4 @@
 EESchema Schematic File Version 4
-LIBS:B-timer-cache
 EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
@@ -400,7 +399,7 @@ F 3 "" H 3100 4200 50  0000 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L device1:R R1
+L device:R R1
 U 1 1 5A7CEE4F
 P 1450 1200
 F 0 "R1" V 1530 1200 50  0000 C CNN
@@ -2557,4 +2556,15 @@ Wire Wire Line
 	7200 3800 7300 3800
 Wire Wire Line
 	6650 3800 6800 3800
+$Comp
+L device:R R?
+U 1 1 5BC0DDE6
+P 100 200
+F 0 "R?" H 170 246 50  0000 L CNN
+F 1 "R" H 170 155 50  0000 L CNN
+F 2 "" V 30  200 50  0001 C CNN
+F 3 "" H 100 200 50  0001 C CNN
+	1    100  200 
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
