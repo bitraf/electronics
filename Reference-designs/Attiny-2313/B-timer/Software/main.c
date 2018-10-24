@@ -13,20 +13,19 @@ void set_led(int x, int y);
 void pixel();
 
 volatile uint8_t x, y;
-uint32_t buffer[HEIGHT];
+volatile uint8_t current_buffer = 0;
+uint32_t buffer[2][HEIGHT];
 volatile uint16_t tick;
 uint32_t cast;
 volatile int8_t seconds = 0;
-volatile int8_t minutes = 2;
+volatile int8_t minutes = 0;
 volatile int8_t button_status = 0;
-
-
 
 ISR(TIMER0_COMPA_vect){
     pixel();
     tick++;
     TCNT0 = 0;
-    button_status = (PINB & _BV(3)) | (PINA & _BV(0)) | (PINA & _BV(1));
+    button_status = (PINB & _BV(3)) | (PINA & _BV(1)) | (PINA & _BV(0));
 }
   
 void delay_ms_noninline(uint16_t ms){
@@ -36,7 +35,7 @@ void delay_ms_noninline(uint16_t ms){
 
 void pixel(){
     cast = (uint32_t)1<<y;
-    if((uint32_t)(buffer[x] & cast))
+    if((uint32_t)(buffer[current_buffer][x] & cast))
         set_led(x, 17-y);
     else
         set_led(5, 10);
@@ -48,222 +47,109 @@ void pixel(){
         y = 0;
 }
 
-void set_sym(uint8_t c, uint8_t offset){
+void set_sym(uint8_t c, uint8_t offset, uint8_t bnr){
     uint32_t chr = pgm_read_dword(&symbols[c]);
     for(uint8_t i=0; i<5; i++){
-        buffer[i] |= ((chr & ((0x7<<(3*i))))>>3*i)<<offset;
+        buffer[bnr][i] |= ((chr & ((0x7<<(3*i))))>>3*i)<<offset;
     }
 }
 
-void clear_buffer(){
+void clear_buffer(uint8_t bnr){
     for(uint8_t i=0; i<5; i++){
-        buffer[i] = 0;
+        buffer[bnr][i] = 0;
     }
 }
 
-/*void test_pixels(){
+void test_pixels(){
     for(uint8_t y=0; y<5; y++){
-        buffer[y] = 0xFFFFFFFF;
+        buffer[current_buffer][y] = 0xFFFFFFFF;
     }
-}*/
+}
 
 void set_led(int x, int y){
-    if(x == 5){
-        DDRD = 0;
-        PORTD = 0;
-        DDRB &= ~0x7;
-        PORTB &= ~0x7;
-        return;
-    }
+    DDRB &= ~0x7;
+    PORTB &= ~0x7;
+
     if(y == 6 || y == 7 || y == 8){
         DDRD = _BV(x);
         PORTD = 0;
-
-        DDRB = _BV(y-6);
-        PORTB = _BV(y-6);
+        DDRB |= _BV(y-6);
+        PORTB |= _BV(y-6);
     }
-    else if(y >= 9 && y<14){
-        if(x == 0){
-            DDRD = _BV(y-9) | _BV(5);
-            PORTD = _BV(y-9);
-
-            DDRB &= ~0x7;
-            PORTB &= ~0x7;
-        }
-        if(x == 1){
-            DDRD = _BV(y-9) | _BV(6);
-            PORTD = _BV(y-9);
-
-            DDRB &= ~0x7;
-            PORTB &= ~0x7;
-        }
-        if(x == 2){
-            DDRD = _BV(y-9);
-            PORTD = _BV(y-9);
-
-            DDRB = _BV(0);
-            PORTB = 0;
-        }
-        if(x == 3){
-            DDRD = _BV(y-9);
-            PORTD = _BV(y-9);
-
-            DDRB = _BV(1);
-            PORTB = 0;
-        }
-        if(x == 4){
-            DDRD = _BV(y-9);
-            PORTD = _BV(y-9);
-
-            DDRB = _BV(2);
-            PORTB = 0;
-        }
-    }
-    else if(y == 14){
-        if(x == 0){
+    else if(y >= 9 && y<=14){
+        if(y == 14 && x == 0)
             y++;
-            DDRD = _BV(y-9) | _BV(5);
+        if(x <= 1){
+            DDRD = _BV(y-9) | _BV(x+5);
             PORTD = _BV(y-9);
-
-            DDRB = 0;
-            PORTB = 0;
         }
-        if(x == 1){
-            DDRD = _BV(y-9) | _BV(6);
-            PORTD = _BV(y-9);
-
-            DDRB = 0;
-            PORTB = 0;
-        }
-        if(x == 2){
+        else{
             DDRD = _BV(y-9);
             PORTD = _BV(y-9);
-
-            DDRB = _BV(0);
-            PORTB = 0;
-        }
-        if(x == 3){
-            DDRD = _BV(y-9);
-            PORTD = _BV(y-9);
-
-            DDRB = _BV(1);
-            PORTB = 0;
-        }
-        if(x == 4){
-            DDRD = _BV(y-9);
-            PORTD = _BV(y-9);
-
-            DDRB = _BV(2);
-            PORTB = 0;
+            DDRB |= _BV(x-2);
         }
     }
     else if(y == 15){
-        if(x == 0){
-            DDRD =  _BV(5);
+        if(x <= 1){
+            DDRD =  _BV(x+5);
             PORTD = 0;
 
-            DDRB = _BV(0);
-            PORTB = _BV(0);
+            DDRB |= _BV(0);
+            PORTB |= _BV(0);
         }
-        if(x == 1){
-            DDRD =   _BV(6);
-            PORTD = 0;
-
-            DDRB = _BV(0);
-            PORTB = _BV(0);
-        }
-        if(x == 2){
+        else{
             DDRD = _BV(y-9);
             PORTD = _BV(y-9);
 
-            DDRB = _BV(0);
-            PORTB = 0;
-        }
-        if(x == 3){
-            DDRD = _BV(y-9);
-            PORTD = _BV(y-9);
-
-            DDRB = _BV(1);
-            PORTB = 0;
-        }
-        if(x == 4){
-            DDRD = _BV(y-9);
-            PORTD = _BV(y-9);
-
-            DDRB = _BV(2);
-            PORTB = 0;
+            DDRB |= _BV(x-2);
         }
     }
     else if(y == 16){
-        if(x == 0){
-            DDRD =  _BV(5);
+        if(x <= 1){
+            DDRD =  _BV(x+5);
             PORTD = 0;
-            DDRB = _BV(1);
-            PORTB = _BV(1);
+            DDRB |= _BV(1);
+            PORTB |= _BV(1);
         }
-        if(x == 1){
-            DDRD =   _BV(6);
-            PORTD = 0;
-
-            DDRB = _BV(1);
-            PORTB = _BV(1);
-        }
-        if(x == 2){
+        else{
             DDRD = 0;
             PORTD = 0;
-
-            DDRB = _BV(0) | _BV(1);
-            PORTB = _BV(1);
-        }
-        if(x == 3){
-            DDRD = 0;
-            PORTD = 0;
-
-            DDRB = _BV(0) | _BV(1);
-            PORTB = _BV(0);
-        }
-        if(x == 4){
-            DDRD = 0;
-            PORTD = 0;
-
-            DDRB = _BV(0) | _BV(2);
-            PORTB = _BV(0);
+            if(x == 2){
+                DDRB |= _BV(0) | _BV(1);
+                PORTB |= _BV(1);
+            }
+            if(x == 3){
+                DDRB |= _BV(0) | _BV(1);
+                PORTB |= _BV(0);
+            }
+            if(x == 4){
+                DDRB |= _BV(0) | _BV(2);
+                PORTB |= _BV(0);
+            }
         }
     }
     else if(y == 17){
-        if(x == 0){
-            DDRD = _BV(5);
+        if(x <= 1){
+            DDRD = _BV(x+5);
             PORTD = 0;
-            DDRB = _BV(2);
-            PORTB = _BV(2);
+            DDRB |= _BV(2);
+            PORTB |= _BV(2);
         }
-        if(x == 1){
-            DDRD = _BV(6);
-            PORTD = 0;
-
-            DDRB = _BV(2);
-            PORTB = _BV(2);
-        }
-        if(x == 2){
+        else{
             DDRD = 0;
             PORTD = 0;
-
-            DDRB = _BV(0) | _BV(2);
-            PORTB = _BV(2);
-        }
-        if(x == 3){
-            DDRD = 0;
-            PORTD = 0;
-
-            DDRB = _BV(2) | _BV(1);
-            PORTB = _BV(2);
-        }
-        if(x == 4){
-            DDRD = 0;
-            PORTD = 0;
-
-            DDRB = _BV(1) | _BV(2);
-            PORTB = _BV(1);
+            if(x == 2){
+                DDRB |= _BV(0) | _BV(2);
+                PORTB |= _BV(2);
+            }
+            if(x == 3){
+                DDRB |= _BV(1) | _BV(2);
+                PORTB |= _BV(2);
+            }
+            if(x == 4){
+                DDRB |= _BV(1) | _BV(2);
+                PORTB |= _BV(1);
+            }
         }
     }
     else{
@@ -272,11 +158,8 @@ void set_led(int x, int y){
         }
         DDRD = _BV(y) | _BV(x);
         PORTD = _BV(y);
-        DDRB &= ~0x7;
-        PORTB &= ~0x7;
     }    
 }
-
 
 void delay_10_us(uint8_t us){
     for(uint8_t i=0; i<us; i++){
@@ -284,7 +167,7 @@ void delay_10_us(uint8_t us){
     }
 }
 
-void sound(uint8_t period, uint8_t length){
+void sound(uint8_t period, uint16_t length){
     DDRB |= _BV(4);
     for(uint16_t i=0; i<length; i++){
         PORTB |= _BV(4);
@@ -292,6 +175,47 @@ void sound(uint8_t period, uint8_t length){
         PORTB &= ~_BV(4); 
         delay_10_us(period);
     }
+}
+
+uint8_t button_1_pressed(){
+    return !(button_status & _BV(0));
+}
+
+uint8_t button_2_pressed(){
+    return !(button_status & _BV(1));
+}
+
+uint8_t button_3_pressed(){
+    return !(button_status & _BV(3));
+}
+
+void alarm(){
+    uint8_t beeps = 0;
+    
+    while(!button_3_pressed()) {
+      beeps++;
+      if (beeps <= 4) {
+        sound(10, 500);
+        delay_ms_noninline(50);
+      }
+      else if (beeps > 4 && beeps < 13) {
+        delay_ms_noninline(50);
+      }
+      else {
+        beeps = 0;
+      }
+   }
+}
+
+void update_time(){
+    uint8_t next_buffer = (current_buffer == 0 ? 1 : 0);
+    clear_buffer(next_buffer);
+    set_sym(minutes/10, 14, next_buffer); 
+    set_sym(minutes%10, 10,next_buffer);
+    set_sym(10, 7, next_buffer);
+    set_sym(seconds/10, 4, next_buffer);
+    set_sym(seconds%10, 0, next_buffer);
+    current_buffer = next_buffer;
 }
 
 int main(void) {
@@ -303,97 +227,64 @@ int main(void) {
     //TIMSK |= (1 << TOIE0); // enable overflow interrupt
     OCR0A = COMPARE_VALUE;
     TIMSK = (1 << OCIE0A); // compare A interrupt
-
     sei(); // enable global interrupts
 
     // Setup buttons
     DDRA &= ~(_BV(0) | ~_BV(1));
     PORTA |= _BV(0) | _BV(1);
-
     DDRB &= ~_BV(3);
     PORTB |= _BV(3);  //enable pull up resistor on button
 
     uint8_t running = 0;
-    clear_buffer();
-    set_sym(minutes/10, 15); 
-    set_sym(minutes%10, 11);
-    set_sym(10, 8);
-    set_sym(seconds/10, 4);
-    set_sym(seconds%10, 0);
-
+    
+    update_time();
     while(1){
-        if(button_status & 0x01){
-          button_status &= ~(0x01); // Clear bit
+        if(button_1_pressed()){
+          while(button_1_pressed());
           if (!running) {
             seconds++;
-            clear_buffer();
-            set_sym(minutes/10, 15); 
-            set_sym(minutes%10, 11);
-            set_sym(10, 8);
-            set_sym(seconds/10, 4);
-            set_sym(seconds%10, 0);
+            if(seconds > 59){
+                seconds = 59;
+            }
+            update_time();
           }
         }
-        if(button_status & 0x02){
-          button_status &= ~(0x02); // Clear bit
+        if(button_2_pressed()){
+          while(button_2_pressed());
           if (!running) {
             minutes++;
-            clear_buffer();
-            set_sym(minutes/10, 15); 
-            set_sym(minutes%10, 11);
-            set_sym(10, 8);
-            set_sym(seconds/10, 4);
-            set_sym(seconds%10, 0);
+            if(minutes > 99){
+                minutes = 99;
+            }
+            update_time();
           }
         }
-        if(button_status & 0x04) {
-          button_status &= ~(0x04); // Clear bit
+        if(button_3_pressed()) {
+          while(button_3_pressed());
           running = !running;
-          delay_ms_noninline(50);
+          update_time();
         }
         
-
-        if(tick > (int)TICKS_PER_SECOND) {
+        if(tick == (int)TICKS_PER_SECOND) {
             tick = 0;
-            if (running) {
+            if (running){
               seconds--;
-              if(seconds == -1){
-                  seconds = 59;
-                  cli();
-                  
-                  // Sound until button 3 pushed:
-                  uint8_t beeps = 0;
-                  while (button_status & 0x04) {
-                      button_status &= ~(0x04); // Clear bit
-                      beeps++;
-                      if (beeps <= 4) {
-                        sound(10, 500);
-                        delay_ms_noninline(50);
-                      }
-                      else if (beeps > 4 && beeps < 13) {
-                        delay_ms_noninline(50);
-                      }
-                      else {
-                        beeps = 0;
-                      }
-                  }
-                  
-                  // A short delay to avoid double-click
-                  delay_ms_noninline(500);
-                  
-                  // Wait until button 3 pushed again before restarting
-                  while (button_status & 0x04);
-                  button_status &= ~(0x04); // Clear bit
-                 
-                  sei();                
+              if(seconds < 0){
+                if(minutes > 0){
+                    minutes--;
+                    seconds = 59;
+                }
+                else{
+                    seconds = 0;
+                }
               }
-              clear_buffer();
-              set_sym(minutes/10, 15); 
-              set_sym(minutes%10, 11);
-              set_sym(10, 8);
-              set_sym(seconds/10, 4);
-              set_sym(seconds%10, 0);
-          }
+            }
+            update_time();
+            if(running){    
+              if(seconds == 0 && minutes == 0){
+                  alarm();
+              }              
+            }
         }
     }
 }
