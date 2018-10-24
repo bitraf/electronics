@@ -1,7 +1,7 @@
 
 TARGET=attiny2313
 NAME=main
-CFLAGS += -fdata-sections -ffunction-sections -Wall -fshort-enums -mcall-prologues -flto -Os -std=c99
+CFLAGS += -fdata-sections -ffunction-sections -Wall -fshort-enums -mcall-prologues -Os -std=c99
 LINKFLAGS += -Wl,-gc-sections -Wl,--relax -flto
 
 all: compile link hex size

@@ -6,6 +6,8 @@
 
 #define WIDTH 18
 #define HEIGHT 5
+#define COMPARE_VALUE 127
+#define TICKS_PER_SECOND (1000000UL/COMPARE_VALUE)
 
 void set_led(int x, int y);
 void pixel();
@@ -14,11 +16,17 @@ volatile uint8_t x, y;
 uint32_t buffer[HEIGHT];
 volatile uint16_t tick;
 uint32_t cast;
-volatile int8_t seconds;
+volatile int8_t seconds = 0;
+volatile int8_t minutes = 2;
+volatile int8_t button_status = 0;
 
-ISR(TIMER0_OVF_vect){
+
+
+ISR(TIMER0_COMPA_vect){
     pixel();
     tick++;
+    TCNT0 = 0;
+    button_status = (PINB & _BV(3)) | (PINA & _BV(0)) | (PINA & _BV(1));
 }
   
 void delay_ms_noninline(uint16_t ms){
@@ -53,11 +61,11 @@ void clear_buffer(){
     }
 }
 
-void test_pixels(){
+/*void test_pixels(){
     for(uint8_t y=0; y<5; y++){
         buffer[y] = 0xFFFFFFFF;
     }
-}
+}*/
 
 void set_led(int x, int y){
     if(x == 5){
@@ -269,18 +277,6 @@ void set_led(int x, int y){
     }    
 }
 
-uint8_t button_1_high(){
-    return (PINB & _BV(3));
-}
-
-
-uint8_t button_2_high(){
-    return (PINA & _BV(0));
-}
-
-uint8_t button_3_high(){
-    return (PINA & _BV(1));
-}
 
 void delay_10_us(uint8_t us){
     for(uint8_t i=0; i<us; i++){
@@ -288,9 +284,9 @@ void delay_10_us(uint8_t us){
     }
 }
 
-void sound(uint8_t period){
+void sound(uint8_t period, uint8_t length){
     DDRB |= _BV(4);
-    for(uint16_t i=0; i<1000; i++){
+    for(uint16_t i=0; i<length; i++){
         PORTB |= _BV(4);
         delay_10_us(period);
         PORTB &= ~_BV(4); 
@@ -299,47 +295,106 @@ void sound(uint8_t period){
 }
 
 int main(void) {
-    CLKPR = (1<<CLKPCE); // 8 MHz
-    CLKPR = 0; // 8 MHz
-    TCCR0B |= (0 << CS02 | 1<<CS01);// set up timer with prescaler
+    CLKPR = (1<<CLKPCE); // Enable change
+    CLKPR = 0; // 8 MHz. Change done.
+    
+    TCCR0B = 1<<CS01; // set up timer with prescaler
     TCNT0 = 0; // initialize counter
-    TIMSK |= (1 << TOIE0); // enable overflow interrupt
+    //TIMSK |= (1 << TOIE0); // enable overflow interrupt
+    OCR0A = COMPARE_VALUE;
+    TIMSK = (1 << OCIE0A); // compare A interrupt
 
     sei(); // enable global interrupts
 
+    // Setup buttons
     DDRA &= ~(_BV(0) | ~_BV(1));
     PORTA |= _BV(0) | _BV(1);
 
     DDRB &= ~_BV(3);
     PORTB |= _BV(3);  //enable pull up resistor on button
 
+    uint8_t running = 0;
+    clear_buffer();
+    set_sym(minutes/10, 15); 
+    set_sym(minutes%10, 11);
+    set_sym(10, 8);
+    set_sym(seconds/10, 4);
+    set_sym(seconds%10, 0);
 
-    seconds = 59;
     while(1){
-        if(!button_1_high()){        
-        }
-        if(!button_2_high()){
-        }
-        if(!button_3_high()){
-        }
-
-        if(tick > 1000){
-            tick = 0;
-            seconds--;
-            if(seconds == -1){
-                seconds = 59;
-                cli();
-                sound(10);
-                sei();                
-            }
+        if(button_status & 0x01){
+          button_status &= ~(0x01); // Clear bit
+          if (!running) {
+            seconds++;
             clear_buffer();
-            set_sym(0, 15); 
-            set_sym(0, 11);
+            set_sym(minutes/10, 15); 
+            set_sym(minutes%10, 11);
             set_sym(10, 8);
             set_sym(seconds/10, 4);
             set_sym(seconds%10, 0);
+          }
         }
+        if(button_status & 0x02){
+          button_status &= ~(0x02); // Clear bit
+          if (!running) {
+            minutes++;
+            clear_buffer();
+            set_sym(minutes/10, 15); 
+            set_sym(minutes%10, 11);
+            set_sym(10, 8);
+            set_sym(seconds/10, 4);
+            set_sym(seconds%10, 0);
+          }
+        }
+        if(button_status & 0x04) {
+          button_status &= ~(0x04); // Clear bit
+          running = !running;
+          delay_ms_noninline(50);
+        }
+        
 
+        if(tick > (int)TICKS_PER_SECOND) {
+            tick = 0;
+            if (running) {
+              seconds--;
+              if(seconds == -1){
+                  seconds = 59;
+                  cli();
+                  
+                  // Sound until button 3 pushed:
+                  uint8_t beeps = 0;
+                  while (button_status & 0x04) {
+                      button_status &= ~(0x04); // Clear bit
+                      beeps++;
+                      if (beeps <= 4) {
+                        sound(10, 500);
+                        delay_ms_noninline(50);
+                      }
+                      else if (beeps > 4 && beeps < 13) {
+                        delay_ms_noninline(50);
+                      }
+                      else {
+                        beeps = 0;
+                      }
+                  }
+                  
+                  // A short delay to avoid double-click
+                  delay_ms_noninline(500);
+                  
+                  // Wait until button 3 pushed again before restarting
+                  while (button_status & 0x04);
+                  button_status &= ~(0x04); // Clear bit
+                 
+                  sei();                
+              }
+              clear_buffer();
+              set_sym(minutes/10, 15); 
+              set_sym(minutes%10, 11);
+              set_sym(10, 8);
+              set_sym(seconds/10, 4);
+              set_sym(seconds%10, 0);
+          }
+        }
     }
 }
 
