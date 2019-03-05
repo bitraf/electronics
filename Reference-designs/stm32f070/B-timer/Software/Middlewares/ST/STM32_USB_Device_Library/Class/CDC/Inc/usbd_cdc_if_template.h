@@ -1,10 +1,10 @@
 /**
   ******************************************************************************
-  * @file    usbd_dfu_media_template.h
+  * @file    usbd_cdc_if_template.h
   * @author  MCD Application Team
   * @version V2.4.2
   * @date    11-December-2015
-  * @brief   header file for the usbd_dfu_media_template.c file
+  * @brief   Header for usbd_cdc_if_template.c file.
   ******************************************************************************
   * @attention
   *
@@ -23,83 +23,31 @@
   * limitations under the License.
   *
   ******************************************************************************
-  */ 
+  */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __USBD_DFU_MEDIA_TEMPLATE_H
-#define __USBD_DFU_MEDIA_TEMPLATE_H
+#ifndef __USBD_CDC_IF_TEMPLATE_H
+#define __USBD_CDC_IF_TEMPLATE_H
 
 #ifdef __cplusplus
  extern "C" {
 #endif
 
 /* Includes ------------------------------------------------------------------*/
-#include "usbd_dfu.h"
+#include "usbd_cdc.h"
 
-/** @addtogroup STM32_USB_DEVICE_LIBRARY
-  * @{
-  */
-  
-/** @defgroup USBD_MEDIA
-  * @brief header file for the usbd_dfu_media_template.c file
-  * @{
-  */ 
+/* Exported types ------------------------------------------------------------*/
+/* Exported constants --------------------------------------------------------*/
 
-/** @defgroup USBD_MEDIA_Exported_Defines
-  * @{
-  */ 
-/**
-  * @}
-  */ 
+extern USBD_CDC_ItfTypeDef  USBD_CDC_Template_fops;
 
-
-/** @defgroup USBD_MEDIA_Exported_Types
-  * @{
-  */
-
-
-/**
-  * @}
-  */ 
-
-
-
-/** @defgroup USBD_MEDIA_Exported_Macros
-  * @{
-  */ 
-
-/**
-  * @}
-  */ 
-
-/** @defgroup USBD_MEDIA_Exported_Variables
-  * @{
-  */ 
-extern USBD_DFU_MediaTypeDef  USBD_DFU_MEDIA_Template_fops;
-/**
-  * @}
-  */ 
-
-/** @defgroup USBD_MEDIA_Exported_FunctionsPrototype
-  * @{
-  */ 
-
-
-/**
-  * @}
-  */ 
+/* Exported macro ------------------------------------------------------------*/
+/* Exported functions ------------------------------------------------------- */
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* __USBD_DFU_MEDIA_TEMPLATE_H */
+#endif /* __USBD_CDC_IF_TEMPLATE_H */
 
-/**
-  * @}
-  */ 
-
-/**
-* @}
-*/ 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
