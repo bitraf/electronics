@@ -88,6 +88,40 @@ static void MX_GPIO_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
+void clear_leds() {
+    //Set all floating
+    GPIO_InitTypeDef GPIO_InitStruct = {0};
+    GPIO_InitStruct.Pin = L0_Pin|L1_Pin|L2_Pin|L3_Pin 
+                        |L4_Pin|L5_Pin|L6_Pin|L7_Pin 
+                        |L8_Pin|L9_Pin;
+    GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+}
+
+void set_led(int x_pix, int y_pix) {
+    GPIO_InitTypeDef GPIO_InitStruct = {0};
+    clear_leds();
+
+    if (x_pix >= 9) {
+        y_pix += 5;
+        x_pix -= 9;
+    }
+    if (x_pix >= y_pix)
+      x_pix++;
+    
+
+    
+    uint16_t x = (1<<x_pix);
+    uint16_t y = (1<<y_pix);
+
+    GPIO_InitStruct.Pin = y|x;
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+    
+    HAL_GPIO_WritePin(GPIOA, x, GPIO_PIN_RESET);
+    HAL_GPIO_WritePin(GPIOA, y, GPIO_PIN_SET);
+ 
+}
 /* USER CODE END 0 */
 
 /**
@@ -130,6 +164,29 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+    
+    // HAL_Delay(500);
+    // clear_leds();
+    
+    // HAL_Delay(500);
+    // GPIO_InitTypeDef GPIO_InitStruct = {0};
+    // GPIO_InitStruct.Pin = L0_Pin|L1_Pin;
+    // GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+    // HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+    // HAL_GPIO_WritePin(GPIOA, L0_Pin, GPIO_PIN_RESET);
+    // HAL_GPIO_WritePin(GPIOA, L1_Pin, GPIO_PIN_SET);
+    
+    
+    for (int y=0; y<5; y++) {
+      for (int x=0; x<18; x++) {
+        set_led(x,y);
+        HAL_Delay(10);
+      }
+    }
+    
+    
+    
+
   }
   /* USER CODE END 3 */
 }
