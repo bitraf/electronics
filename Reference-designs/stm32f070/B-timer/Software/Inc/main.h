@@ -84,7 +84,7 @@ extern "C" {
 void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
-
+void pixel(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
@@ -104,12 +104,12 @@ void Error_Handler(void);
 #define L6_GPIO_Port GPIOA
 #define L7_Pin GPIO_PIN_7
 #define L7_GPIO_Port GPIOA
-#define S0_Pin GPIO_PIN_0
-#define S0_GPIO_Port GPIOB
-#define S1_Pin GPIO_PIN_1
-#define S1_GPIO_Port GPIOB
-#define S2_Pin GPIO_PIN_2
-#define S2_GPIO_Port GPIOB
+#define SW2_Pin GPIO_PIN_0
+#define SW2_GPIO_Port GPIOB
+#define SW1_Pin GPIO_PIN_1
+#define SW1_GPIO_Port GPIOB
+#define SW3_Pin GPIO_PIN_2
+#define SW3_GPIO_Port GPIOB
 #define BUZZER_Pin GPIO_PIN_12
 #define BUZZER_GPIO_Port GPIOB
 #define L8_Pin GPIO_PIN_8

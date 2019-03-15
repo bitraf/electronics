@@ -73,14 +73,27 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
+TIM_HandleTypeDef htim3;
 
 /* USER CODE BEGIN PV */
+
+// Symbols 0 to 9. Each symbol is 4 pixels wide and 5 pixels high. Each row of 4 pixels is represented by 4 bits.
+const uint32_t symbols[] = { 0xeaaae, 0xe4464, 0xe2e8e, 0xe8e8e, 0x88eaa, 0xe8e2e, 0xeae2e, 0x8888e, 0xeaeae, 0x88eae };
+
+uint8_t digit1 = 0;
+uint8_t digit2 = 0;
+uint8_t digit3 = 0;
+uint8_t digit4 = 0;
+uint8_t disp_minutes = 0;
+uint8_t disp_seconds = 0;
+
 
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
+static void MX_TIM3_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -102,6 +115,7 @@ void set_led(int x_pix, int y_pix) {
     GPIO_InitTypeDef GPIO_InitStruct = {0};
     clear_leds();
 
+    // Convert from x,y coordinates to LED pin coordinates:
     if (x_pix >= 9) {
         y_pix += 5;
         x_pix -= 9;
@@ -109,11 +123,10 @@ void set_led(int x_pix, int y_pix) {
     if (x_pix >= y_pix)
       x_pix++;
     
-
-    
     uint16_t x = (1<<x_pix);
     uint16_t y = (1<<y_pix);
 
+    // Set the correct pins for these x,y coordinates:
     GPIO_InitStruct.Pin = y|x;
     GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
@@ -122,6 +135,57 @@ void set_led(int x_pix, int y_pix) {
     HAL_GPIO_WritePin(GPIOA, y, GPIO_PIN_SET);
  
 }
+
+void pixel() {
+  
+  static uint8_t x = 0;
+  static uint8_t y = 0;
+  uint32_t symbol = 0;
+  
+  // DIGIT 1
+  if ( x == 8 ) {
+    symbol = 0x00; // Nothing when x=8
+  }
+  else  if ( x == 9 ) {
+    symbol = 0x0f0f0; // Colon when x=9
+  }
+  else if (x < 4)
+  {
+    symbol = symbols[digit1];
+  }
+  else if (x < 8) {
+    symbol = symbols[digit2];
+  }
+  else if (x < 14) {
+    symbol = symbols[digit3];
+  }
+  else {
+    symbol = symbols[digit4];
+  }
+  
+  // Convert from x/y position to bit position in the symbol variable 
+  uint8_t position = (x%4) + 4*y;
+  if (x > 9)
+    position = ((x-2)%4) + 4*y;
+    
+  
+  if ( (1 << position) & symbol )
+    set_led(x, y);
+  else
+    clear_leds();
+  
+  // Go to next LED:
+  x++;
+  y++;
+  
+  // Reset to 0 when out of range:
+  if(x > 17)
+      x = 0;
+  if(y > 4)
+      y = 0;
+}
+
+
 /* USER CODE END 0 */
 
 /**
@@ -153,8 +217,12 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_USB_DEVICE_Init();
+  MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
 
+  HAL_TIM_Base_Start_IT(&htim3);
+
+  
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -165,6 +233,39 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
     
+    if (HAL_GPIO_ReadPin(GPIOB, SW2_Pin)==0)
+    {
+        // Increase minutes
+        disp_minutes++;
+        if (disp_minutes > 99)
+          disp_minutes = 0;
+        
+        // Update digits 1 and 2
+        digit1 = disp_minutes / 10;
+        digit2 = disp_minutes % 10;
+        
+        HAL_Delay(10);
+        while (HAL_GPIO_ReadPin(GPIOB, SW2_Pin)==0) {}
+        HAL_Delay(10);
+    }
+    
+    if (HAL_GPIO_ReadPin(GPIOB, SW3_Pin)==0)
+    {
+        // Increase seconds
+        disp_seconds++;
+        if (disp_seconds > 99)
+          disp_seconds = 0;
+        
+        // Update digits 3 and 4
+        digit3 = disp_seconds / 10;
+        digit4 = disp_seconds % 10;
+        
+        HAL_Delay(10);
+        while (HAL_GPIO_ReadPin(GPIOB, SW3_Pin)==0) {}
+        HAL_Delay(10);
+    }
+  
+  
     // HAL_Delay(500);
     // clear_leds();
     
@@ -177,12 +278,12 @@ int main(void)
     // HAL_GPIO_WritePin(GPIOA, L1_Pin, GPIO_PIN_SET);
     
     
-    for (int y=0; y<5; y++) {
+    /* for (int y=0; y<5; y++) {
       for (int x=0; x<18; x++) {
         set_led(x,y);
         HAL_Delay(10);
       }
-    }
+    } */
     
     
     
@@ -235,6 +336,51 @@ void SystemClock_Config(void)
 }
 
 /**
+  * @brief TIM3 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_TIM3_Init(void)
+{
+
+  /* USER CODE BEGIN TIM3_Init 0 */
+
+  /* USER CODE END TIM3_Init 0 */
+
+  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
+  TIM_MasterConfigTypeDef sMasterConfig = {0};
+
+  /* USER CODE BEGIN TIM3_Init 1 */
+
+  /* USER CODE END TIM3_Init 1 */
+  htim3.Instance = TIM3;
+  htim3.Init.Prescaler = 479;
+  htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim3.Init.Period = 10;
+  htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_Base_Init(&htim3) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+  if (HAL_TIM_ConfigClockSource(&htim3, &sClockSourceConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim3, &sMasterConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM3_Init 2 */
+
+  /* USER CODE END TIM3_Init 2 */
+
+}
+
+/**
   * @brief GPIO Initialization Function
   * @param None
   * @retval None
@@ -251,23 +397,23 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOA, L0_Pin|L1_Pin|L2_Pin|L3_Pin 
                           |L4_Pin|L5_Pin|L6_Pin|L7_Pin 
-                          |L9_Pin, GPIO_PIN_RESET);
+                          |L8_Pin|L9_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pins : L0_Pin L1_Pin L2_Pin L3_Pin 
                            L4_Pin L5_Pin L6_Pin L7_Pin 
-                           L9_Pin */
+                           L8_Pin L9_Pin */
   GPIO_InitStruct.Pin = L0_Pin|L1_Pin|L2_Pin|L3_Pin 
                           |L4_Pin|L5_Pin|L6_Pin|L7_Pin 
-                          |L9_Pin;
+                          |L8_Pin|L9_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : S0_Pin S1_Pin S2_Pin */
-  GPIO_InitStruct.Pin = S0_Pin|S1_Pin|S2_Pin;
+  /*Configure GPIO pins : SW2_Pin SW1_Pin SW3_Pin */
+  GPIO_InitStruct.Pin = SW2_Pin|SW1_Pin|SW3_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
   /*Configure GPIO pin : BUZZER_Pin */
@@ -277,12 +423,6 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   //GPIO_InitStruct.Alternate = GPIO_AF1_SYS;
   HAL_GPIO_Init(BUZZER_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : L8_Pin */
-  GPIO_InitStruct.Pin = L8_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(L8_GPIO_Port, &GPIO_InitStruct);
 
 }
 

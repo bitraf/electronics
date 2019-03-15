@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccVuF5XN.s 			page 1
+ARM GAS  /tmp/ccPYl3Iq.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccVuF5XN.s 			page 1
   31:Src/system_stm32f0xx.c ****   *        SYSCLK(Hz)                             | 8000000
   32:Src/system_stm32f0xx.c ****   *-----------------------------------------------------------------------------
   33:Src/system_stm32f0xx.c ****   *        HCLK(Hz)                               | 8000000
-ARM GAS  /tmp/ccVuF5XN.s 			page 2
+ARM GAS  /tmp/ccPYl3Iq.s 			page 2
 
 
   34:Src/system_stm32f0xx.c ****   *-----------------------------------------------------------------------------
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccVuF5XN.s 			page 1
   88:Src/system_stm32f0xx.c **** /** @addtogroup STM32F0xx_System_Private_TypesDefinitions
   89:Src/system_stm32f0xx.c ****   * @{
   90:Src/system_stm32f0xx.c ****   */
-ARM GAS  /tmp/ccVuF5XN.s 			page 3
+ARM GAS  /tmp/ccPYl3Iq.s 			page 3
 
 
   91:Src/system_stm32f0xx.c **** 
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccVuF5XN.s 			page 1
  145:Src/system_stm32f0xx.c **** /** @addtogroup STM32F0xx_System_Private_FunctionPrototypes
  146:Src/system_stm32f0xx.c ****   * @{
  147:Src/system_stm32f0xx.c ****   */
-ARM GAS  /tmp/ccVuF5XN.s 			page 4
+ARM GAS  /tmp/ccPYl3Iq.s 			page 4
 
 
  148:Src/system_stm32f0xx.c **** 
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccVuF5XN.s 			page 1
  181:Src/system_stm32f0xx.c ****   RCC->CR &= (uint32_t)0xFFFBFFFFU;
   47              		.loc 1 181 0
   48 001a 1A68     		ldr	r2, [r3]
-ARM GAS  /tmp/ccVuF5XN.s 			page 5
+ARM GAS  /tmp/ccPYl3Iq.s 			page 5
 
 
   49 001c 0F48     		ldr	r0, .L2+12
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccVuF5XN.s 			page 1
  213:Src/system_stm32f0xx.c ****  #warning "No target selected"
  214:Src/system_stm32f0xx.c **** #endif
  215:Src/system_stm32f0xx.c **** 
-ARM GAS  /tmp/ccVuF5XN.s 			page 6
+ARM GAS  /tmp/ccPYl3Iq.s 			page 6
 
 
  216:Src/system_stm32f0xx.c ****   /* Reset HSI14 bit */
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccVuF5XN.s 			page 1
  239:Src/system_stm32f0xx.c ****   *
  240:Src/system_stm32f0xx.c ****   *           - If SYSCLK source is HSE, SystemCoreClock will contain the HSE_VALUE(**)
  241:Src/system_stm32f0xx.c ****   *
-ARM GAS  /tmp/ccVuF5XN.s 			page 7
+ARM GAS  /tmp/ccPYl3Iq.s 			page 7
 
 
  242:Src/system_stm32f0xx.c ****   *           - If SYSCLK source is PLL, SystemCoreClock will contain the HSE_VALUE(**)
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccVuF5XN.s 			page 1
  273:Src/system_stm32f0xx.c ****       SystemCoreClock = HSE_VALUE;
  274:Src/system_stm32f0xx.c ****       break;
  275:Src/system_stm32f0xx.c ****     case RCC_CFGR_SWS_PLL:  /* PLL used as system clock */
-ARM GAS  /tmp/ccVuF5XN.s 			page 8
+ARM GAS  /tmp/ccPYl3Iq.s 			page 8
 
 
  276:Src/system_stm32f0xx.c ****       /* Get PLL clock source and multiplication factor ----------------------*/
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccVuF5XN.s 			page 1
  145              	.L9:
  312:Src/system_stm32f0xx.c ****   }
  313:Src/system_stm32f0xx.c ****   /* Compute HCLK clock frequency ----------------*/
-ARM GAS  /tmp/ccVuF5XN.s 			page 9
+ARM GAS  /tmp/ccPYl3Iq.s 			page 9
 
 
  314:Src/system_stm32f0xx.c ****   /* Get HCLK prescaler */
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccVuF5XN.s 			page 1
  190 0054 0C40     		ands	r4, r1
  191 0056 0234     		adds	r4, r4, #2
  192              	.LVL17:
-ARM GAS  /tmp/ccVuF5XN.s 			page 10
+ARM GAS  /tmp/ccPYl3Iq.s 			page 10
 
 
  280:Src/system_stm32f0xx.c **** 
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccVuF5XN.s 			page 1
  248              	AHBPrescTable:
  249 0000 00       		.byte	0
  250 0001 00       		.byte	0
-ARM GAS  /tmp/ccVuF5XN.s 			page 11
+ARM GAS  /tmp/ccPYl3Iq.s 			page 11
 
 
  251 0002 00       		.byte	0
@@ -636,23 +636,23 @@ ARM GAS  /tmp/ccVuF5XN.s 			page 1
  285              		.file 7 "/usr/arm-none-eabi/include/sys/_types.h"
  286              		.file 8 "/usr/lib/gcc/arm-none-eabi/7.3.1/include/stddef.h"
  287              		.file 9 "/usr/arm-none-eabi/include/sys/reent.h"
-ARM GAS  /tmp/ccVuF5XN.s 			page 12
+ARM GAS  /tmp/ccPYl3Iq.s 			page 12
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 system_stm32f0xx.c
-     /tmp/ccVuF5XN.s:16     .text.SystemInit:0000000000000000 $t
-     /tmp/ccVuF5XN.s:23     .text.SystemInit:0000000000000000 SystemInit
-     /tmp/ccVuF5XN.s:85     .text.SystemInit:0000000000000050 $d
-     /tmp/ccVuF5XN.s:96     .text.SystemCoreClockUpdate:0000000000000000 $t
-     /tmp/ccVuF5XN.s:103    .text.SystemCoreClockUpdate:0000000000000000 SystemCoreClockUpdate
-     /tmp/ccVuF5XN.s:226    .text.SystemCoreClockUpdate:0000000000000084 $d
-     /tmp/ccVuF5XN.s:269    .rodata.APBPrescTable:0000000000000000 APBPrescTable
-     /tmp/ccVuF5XN.s:248    .rodata.AHBPrescTable:0000000000000000 AHBPrescTable
-     /tmp/ccVuF5XN.s:241    .data.SystemCoreClock:0000000000000000 SystemCoreClock
-     /tmp/ccVuF5XN.s:237    .data.SystemCoreClock:0000000000000000 $d
-     /tmp/ccVuF5XN.s:244    .rodata.AHBPrescTable:0000000000000000 $d
-     /tmp/ccVuF5XN.s:266    .rodata.APBPrescTable:0000000000000000 $d
+     /tmp/ccPYl3Iq.s:16     .text.SystemInit:0000000000000000 $t
+     /tmp/ccPYl3Iq.s:23     .text.SystemInit:0000000000000000 SystemInit
+     /tmp/ccPYl3Iq.s:85     .text.SystemInit:0000000000000050 $d
+     /tmp/ccPYl3Iq.s:96     .text.SystemCoreClockUpdate:0000000000000000 $t
+     /tmp/ccPYl3Iq.s:103    .text.SystemCoreClockUpdate:0000000000000000 SystemCoreClockUpdate
+     /tmp/ccPYl3Iq.s:226    .text.SystemCoreClockUpdate:0000000000000084 $d
+     /tmp/ccPYl3Iq.s:269    .rodata.APBPrescTable:0000000000000000 APBPrescTable
+     /tmp/ccPYl3Iq.s:248    .rodata.AHBPrescTable:0000000000000000 AHBPrescTable
+     /tmp/ccPYl3Iq.s:241    .data.SystemCoreClock:0000000000000000 SystemCoreClock
+     /tmp/ccPYl3Iq.s:237    .data.SystemCoreClock:0000000000000000 $d
+     /tmp/ccPYl3Iq.s:244    .rodata.AHBPrescTable:0000000000000000 $d
+     /tmp/ccPYl3Iq.s:266    .rodata.APBPrescTable:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 __aeabi_uidiv
