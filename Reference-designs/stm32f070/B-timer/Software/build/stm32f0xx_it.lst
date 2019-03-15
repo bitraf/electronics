@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cchibEtC.s 			page 1
+ARM GAS  /tmp/ccUNVaNN.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cchibEtC.s 			page 1
   31:Src/stm32f0xx_it.c ****   *
   32:Src/stm32f0xx_it.c ****   ******************************************************************************
   33:Src/stm32f0xx_it.c ****   */
-ARM GAS  /tmp/cchibEtC.s 			page 2
+ARM GAS  /tmp/ccUNVaNN.s 			page 2
 
 
   34:Src/stm32f0xx_it.c **** /* USER CODE END Header */
@@ -101,36 +101,37 @@ ARM GAS  /tmp/cchibEtC.s 			page 1
   71:Src/stm32f0xx_it.c **** /* USER CODE END 0 */
   72:Src/stm32f0xx_it.c **** 
   73:Src/stm32f0xx_it.c **** /* External variables --------------------------------------------------------*/
-  74:Src/stm32f0xx_it.c **** extern PCD_HandleTypeDef hpcd_USB_FS;
-  75:Src/stm32f0xx_it.c **** extern TIM_HandleTypeDef htim3;
-  76:Src/stm32f0xx_it.c **** /* USER CODE BEGIN EV */
-  77:Src/stm32f0xx_it.c **** 
-  78:Src/stm32f0xx_it.c **** /* USER CODE END EV */
-  79:Src/stm32f0xx_it.c **** 
-  80:Src/stm32f0xx_it.c **** /******************************************************************************/
-  81:Src/stm32f0xx_it.c **** /*           Cortex-M0 Processor Interruption and Exception Handlers          */ 
-  82:Src/stm32f0xx_it.c **** /******************************************************************************/
-  83:Src/stm32f0xx_it.c **** /**
-  84:Src/stm32f0xx_it.c ****   * @brief This function handles Non maskable interrupt.
-  85:Src/stm32f0xx_it.c ****   */
-  86:Src/stm32f0xx_it.c **** void NMI_Handler(void)
-  87:Src/stm32f0xx_it.c **** {
-  26              		.loc 1 87 0
+  74:Src/stm32f0xx_it.c **** extern TIM_HandleTypeDef htim3;
+  75:Src/stm32f0xx_it.c **** extern TIM_HandleTypeDef htim14;
+  76:Src/stm32f0xx_it.c **** extern TIM_HandleTypeDef htim16;
+  77:Src/stm32f0xx_it.c **** /* USER CODE BEGIN EV */
+  78:Src/stm32f0xx_it.c **** 
+  79:Src/stm32f0xx_it.c **** /* USER CODE END EV */
+  80:Src/stm32f0xx_it.c **** 
+  81:Src/stm32f0xx_it.c **** /******************************************************************************/
+  82:Src/stm32f0xx_it.c **** /*           Cortex-M0 Processor Interruption and Exception Handlers          */ 
+  83:Src/stm32f0xx_it.c **** /******************************************************************************/
+  84:Src/stm32f0xx_it.c **** /**
+  85:Src/stm32f0xx_it.c ****   * @brief This function handles Non maskable interrupt.
+  86:Src/stm32f0xx_it.c ****   */
+  87:Src/stm32f0xx_it.c **** void NMI_Handler(void)
+  88:Src/stm32f0xx_it.c **** {
+  26              		.loc 1 88 0
   27              		.cfi_startproc
+ARM GAS  /tmp/ccUNVaNN.s 			page 3
+
+
   28              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  /tmp/cchibEtC.s 			page 3
-
-
   29              		@ frame_needed = 0, uses_anonymous_args = 0
   30              		@ link register save eliminated.
-  88:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN NonMaskableInt_IRQn 0 */
-  89:Src/stm32f0xx_it.c **** 
-  90:Src/stm32f0xx_it.c ****   /* USER CODE END NonMaskableInt_IRQn 0 */
-  91:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN NonMaskableInt_IRQn 1 */
-  92:Src/stm32f0xx_it.c **** 
-  93:Src/stm32f0xx_it.c ****   /* USER CODE END NonMaskableInt_IRQn 1 */
-  94:Src/stm32f0xx_it.c **** }
-  31              		.loc 1 94 0
+  89:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN NonMaskableInt_IRQn 0 */
+  90:Src/stm32f0xx_it.c **** 
+  91:Src/stm32f0xx_it.c ****   /* USER CODE END NonMaskableInt_IRQn 0 */
+  92:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN NonMaskableInt_IRQn 1 */
+  93:Src/stm32f0xx_it.c **** 
+  94:Src/stm32f0xx_it.c ****   /* USER CODE END NonMaskableInt_IRQn 1 */
+  95:Src/stm32f0xx_it.c **** }
+  31              		.loc 1 95 0
   32              		@ sp needed
   33 0000 7047     		bx	lr
   34              		.cfi_endproc
@@ -144,13 +145,13 @@ ARM GAS  /tmp/cchibEtC.s 			page 1
   43              		.fpu softvfp
   45              	HardFault_Handler:
   46              	.LFB38:
-  95:Src/stm32f0xx_it.c **** 
-  96:Src/stm32f0xx_it.c **** /**
-  97:Src/stm32f0xx_it.c ****   * @brief This function handles Hard fault interrupt.
-  98:Src/stm32f0xx_it.c ****   */
-  99:Src/stm32f0xx_it.c **** void HardFault_Handler(void)
- 100:Src/stm32f0xx_it.c **** {
-  47              		.loc 1 100 0
+  96:Src/stm32f0xx_it.c **** 
+  97:Src/stm32f0xx_it.c **** /**
+  98:Src/stm32f0xx_it.c ****   * @brief This function handles Hard fault interrupt.
+  99:Src/stm32f0xx_it.c ****   */
+ 100:Src/stm32f0xx_it.c **** void HardFault_Handler(void)
+ 101:Src/stm32f0xx_it.c **** {
+  47              		.loc 1 101 0
   48              		.cfi_startproc
   49              		@ Volatile: function does not return.
   50              		@ args = 0, pretend = 0, frame = 0
@@ -169,37 +170,37 @@ ARM GAS  /tmp/cchibEtC.s 			page 1
   64              		.fpu softvfp
   66              	SVC_Handler:
   67              	.LFB39:
- 101:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN HardFault_IRQn 0 */
- 102:Src/stm32f0xx_it.c **** 
- 103:Src/stm32f0xx_it.c ****   /* USER CODE END HardFault_IRQn 0 */
- 104:Src/stm32f0xx_it.c ****   while (1)
- 105:Src/stm32f0xx_it.c ****   {
- 106:Src/stm32f0xx_it.c ****     /* USER CODE BEGIN W1_HardFault_IRQn 0 */
- 107:Src/stm32f0xx_it.c ****     /* USER CODE END W1_HardFault_IRQn 0 */
- 108:Src/stm32f0xx_it.c ****   }
- 109:Src/stm32f0xx_it.c **** }
-ARM GAS  /tmp/cchibEtC.s 			page 4
+ 102:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN HardFault_IRQn 0 */
+ 103:Src/stm32f0xx_it.c **** 
+ 104:Src/stm32f0xx_it.c ****   /* USER CODE END HardFault_IRQn 0 */
+ 105:Src/stm32f0xx_it.c ****   while (1)
+ 106:Src/stm32f0xx_it.c ****   {
+ 107:Src/stm32f0xx_it.c ****     /* USER CODE BEGIN W1_HardFault_IRQn 0 */
+ 108:Src/stm32f0xx_it.c ****     /* USER CODE END W1_HardFault_IRQn 0 */
+ 109:Src/stm32f0xx_it.c ****   }
+ARM GAS  /tmp/ccUNVaNN.s 			page 4
 
 
- 110:Src/stm32f0xx_it.c **** 
- 111:Src/stm32f0xx_it.c **** /**
- 112:Src/stm32f0xx_it.c ****   * @brief This function handles System service call via SWI instruction.
- 113:Src/stm32f0xx_it.c ****   */
- 114:Src/stm32f0xx_it.c **** void SVC_Handler(void)
- 115:Src/stm32f0xx_it.c **** {
-  68              		.loc 1 115 0
+ 110:Src/stm32f0xx_it.c **** }
+ 111:Src/stm32f0xx_it.c **** 
+ 112:Src/stm32f0xx_it.c **** /**
+ 113:Src/stm32f0xx_it.c ****   * @brief This function handles System service call via SWI instruction.
+ 114:Src/stm32f0xx_it.c ****   */
+ 115:Src/stm32f0xx_it.c **** void SVC_Handler(void)
+ 116:Src/stm32f0xx_it.c **** {
+  68              		.loc 1 116 0
   69              		.cfi_startproc
   70              		@ args = 0, pretend = 0, frame = 0
   71              		@ frame_needed = 0, uses_anonymous_args = 0
   72              		@ link register save eliminated.
- 116:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN SVC_IRQn 0 */
- 117:Src/stm32f0xx_it.c **** 
- 118:Src/stm32f0xx_it.c ****   /* USER CODE END SVC_IRQn 0 */
- 119:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN SVC_IRQn 1 */
- 120:Src/stm32f0xx_it.c **** 
- 121:Src/stm32f0xx_it.c ****   /* USER CODE END SVC_IRQn 1 */
- 122:Src/stm32f0xx_it.c **** }
-  73              		.loc 1 122 0
+ 117:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN SVC_IRQn 0 */
+ 118:Src/stm32f0xx_it.c **** 
+ 119:Src/stm32f0xx_it.c ****   /* USER CODE END SVC_IRQn 0 */
+ 120:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN SVC_IRQn 1 */
+ 121:Src/stm32f0xx_it.c **** 
+ 122:Src/stm32f0xx_it.c ****   /* USER CODE END SVC_IRQn 1 */
+ 123:Src/stm32f0xx_it.c **** }
+  73              		.loc 1 123 0
   74              		@ sp needed
   75 0000 7047     		bx	lr
   76              		.cfi_endproc
@@ -213,34 +214,34 @@ ARM GAS  /tmp/cchibEtC.s 			page 1
   85              		.fpu softvfp
   87              	PendSV_Handler:
   88              	.LFB40:
- 123:Src/stm32f0xx_it.c **** 
- 124:Src/stm32f0xx_it.c **** /**
- 125:Src/stm32f0xx_it.c ****   * @brief This function handles Pendable request for system service.
- 126:Src/stm32f0xx_it.c ****   */
- 127:Src/stm32f0xx_it.c **** void PendSV_Handler(void)
- 128:Src/stm32f0xx_it.c **** {
-  89              		.loc 1 128 0
+ 124:Src/stm32f0xx_it.c **** 
+ 125:Src/stm32f0xx_it.c **** /**
+ 126:Src/stm32f0xx_it.c ****   * @brief This function handles Pendable request for system service.
+ 127:Src/stm32f0xx_it.c ****   */
+ 128:Src/stm32f0xx_it.c **** void PendSV_Handler(void)
+ 129:Src/stm32f0xx_it.c **** {
+  89              		.loc 1 129 0
   90              		.cfi_startproc
   91              		@ args = 0, pretend = 0, frame = 0
   92              		@ frame_needed = 0, uses_anonymous_args = 0
   93              		@ link register save eliminated.
- 129:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN PendSV_IRQn 0 */
- 130:Src/stm32f0xx_it.c **** 
- 131:Src/stm32f0xx_it.c ****   /* USER CODE END PendSV_IRQn 0 */
- 132:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN PendSV_IRQn 1 */
- 133:Src/stm32f0xx_it.c **** 
- 134:Src/stm32f0xx_it.c ****   /* USER CODE END PendSV_IRQn 1 */
- 135:Src/stm32f0xx_it.c **** }
-  94              		.loc 1 135 0
+ 130:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN PendSV_IRQn 0 */
+ 131:Src/stm32f0xx_it.c **** 
+ 132:Src/stm32f0xx_it.c ****   /* USER CODE END PendSV_IRQn 0 */
+ 133:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN PendSV_IRQn 1 */
+ 134:Src/stm32f0xx_it.c **** 
+ 135:Src/stm32f0xx_it.c ****   /* USER CODE END PendSV_IRQn 1 */
+ 136:Src/stm32f0xx_it.c **** }
+  94              		.loc 1 136 0
   95              		@ sp needed
   96 0000 7047     		bx	lr
   97              		.cfi_endproc
   98              	.LFE40:
  100              		.section	.text.SysTick_Handler,"ax",%progbits
+ARM GAS  /tmp/ccUNVaNN.s 			page 5
+
+
  101              		.align	1
-ARM GAS  /tmp/cchibEtC.s 			page 5
-
-
  102              		.global	SysTick_Handler
  103              		.syntax unified
  104              		.code	16
@@ -248,13 +249,13 @@ ARM GAS  /tmp/cchibEtC.s 			page 1
  106              		.fpu softvfp
  108              	SysTick_Handler:
  109              	.LFB41:
- 136:Src/stm32f0xx_it.c **** 
- 137:Src/stm32f0xx_it.c **** /**
- 138:Src/stm32f0xx_it.c ****   * @brief This function handles System tick timer.
- 139:Src/stm32f0xx_it.c ****   */
- 140:Src/stm32f0xx_it.c **** void SysTick_Handler(void)
- 141:Src/stm32f0xx_it.c **** {
- 110              		.loc 1 141 0
+ 137:Src/stm32f0xx_it.c **** 
+ 138:Src/stm32f0xx_it.c **** /**
+ 139:Src/stm32f0xx_it.c ****   * @brief This function handles System tick timer.
+ 140:Src/stm32f0xx_it.c ****   */
+ 141:Src/stm32f0xx_it.c **** void SysTick_Handler(void)
+ 142:Src/stm32f0xx_it.c **** {
+ 110              		.loc 1 142 0
  111              		.cfi_startproc
  112              		@ args = 0, pretend = 0, frame = 0
  113              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -263,18 +264,18 @@ ARM GAS  /tmp/cchibEtC.s 			page 1
  116              		.cfi_def_cfa_offset 8
  117              		.cfi_offset 4, -8
  118              		.cfi_offset 14, -4
- 142:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN SysTick_IRQn 0 */
- 143:Src/stm32f0xx_it.c **** 
- 144:Src/stm32f0xx_it.c ****   /* USER CODE END SysTick_IRQn 0 */
- 145:Src/stm32f0xx_it.c ****   HAL_IncTick();
- 119              		.loc 1 145 0
+ 143:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN SysTick_IRQn 0 */
+ 144:Src/stm32f0xx_it.c **** 
+ 145:Src/stm32f0xx_it.c ****   /* USER CODE END SysTick_IRQn 0 */
+ 146:Src/stm32f0xx_it.c ****   HAL_IncTick();
+ 119              		.loc 1 146 0
  120 0002 FFF7FEFF 		bl	HAL_IncTick
  121              	.LVL0:
- 146:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN SysTick_IRQn 1 */
- 147:Src/stm32f0xx_it.c **** 
- 148:Src/stm32f0xx_it.c ****   /* USER CODE END SysTick_IRQn 1 */
- 149:Src/stm32f0xx_it.c **** }
- 122              		.loc 1 149 0
+ 147:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN SysTick_IRQn 1 */
+ 148:Src/stm32f0xx_it.c **** 
+ 149:Src/stm32f0xx_it.c ****   /* USER CODE END SysTick_IRQn 1 */
+ 150:Src/stm32f0xx_it.c **** }
+ 122              		.loc 1 150 0
  123              		@ sp needed
  124 0006 10BD     		pop	{r4, pc}
  125              		.cfi_endproc
@@ -288,23 +289,23 @@ ARM GAS  /tmp/cchibEtC.s 			page 1
  134              		.fpu softvfp
  136              	TIM3_IRQHandler:
  137              	.LFB42:
- 150:Src/stm32f0xx_it.c **** 
- 151:Src/stm32f0xx_it.c **** /******************************************************************************/
- 152:Src/stm32f0xx_it.c **** /* STM32F0xx Peripheral Interrupt Handlers                                    */
- 153:Src/stm32f0xx_it.c **** /* Add here the Interrupt Handlers for the used peripherals.                  */
- 154:Src/stm32f0xx_it.c **** /* For the available peripheral interrupt handler names,                      */
- 155:Src/stm32f0xx_it.c **** /* please refer to the startup file (startup_stm32f0xx.s).                    */
- 156:Src/stm32f0xx_it.c **** /******************************************************************************/
- 157:Src/stm32f0xx_it.c **** 
- 158:Src/stm32f0xx_it.c **** /**
- 159:Src/stm32f0xx_it.c ****   * @brief This function handles TIM3 global interrupt.
-ARM GAS  /tmp/cchibEtC.s 			page 6
+ 151:Src/stm32f0xx_it.c **** 
+ 152:Src/stm32f0xx_it.c **** /******************************************************************************/
+ 153:Src/stm32f0xx_it.c **** /* STM32F0xx Peripheral Interrupt Handlers                                    */
+ 154:Src/stm32f0xx_it.c **** /* Add here the Interrupt Handlers for the used peripherals.                  */
+ 155:Src/stm32f0xx_it.c **** /* For the available peripheral interrupt handler names,                      */
+ 156:Src/stm32f0xx_it.c **** /* please refer to the startup file (startup_stm32f0xx.s).                    */
+ 157:Src/stm32f0xx_it.c **** /******************************************************************************/
+ 158:Src/stm32f0xx_it.c **** 
+ 159:Src/stm32f0xx_it.c **** /**
+ARM GAS  /tmp/ccUNVaNN.s 			page 6
 
 
- 160:Src/stm32f0xx_it.c ****   */
- 161:Src/stm32f0xx_it.c **** void TIM3_IRQHandler(void)
- 162:Src/stm32f0xx_it.c **** {
- 138              		.loc 1 162 0
+ 160:Src/stm32f0xx_it.c ****   * @brief This function handles TIM3 global interrupt.
+ 161:Src/stm32f0xx_it.c ****   */
+ 162:Src/stm32f0xx_it.c **** void TIM3_IRQHandler(void)
+ 163:Src/stm32f0xx_it.c **** {
+ 138              		.loc 1 163 0
  139              		.cfi_startproc
  140              		@ args = 0, pretend = 0, frame = 0
  141              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -313,24 +314,24 @@ ARM GAS  /tmp/cchibEtC.s 			page 1
  144              		.cfi_def_cfa_offset 8
  145              		.cfi_offset 4, -8
  146              		.cfi_offset 14, -4
- 163:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN TIM3_IRQn 0 */
- 164:Src/stm32f0xx_it.c **** 
- 165:Src/stm32f0xx_it.c ****   /* USER CODE END TIM3_IRQn 0 */
- 166:Src/stm32f0xx_it.c ****   HAL_TIM_IRQHandler(&htim3);
- 147              		.loc 1 166 0
+ 164:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN TIM3_IRQn 0 */
+ 165:Src/stm32f0xx_it.c **** 
+ 166:Src/stm32f0xx_it.c ****   /* USER CODE END TIM3_IRQn 0 */
+ 167:Src/stm32f0xx_it.c ****   HAL_TIM_IRQHandler(&htim3);
+ 147              		.loc 1 167 0
  148 0002 0348     		ldr	r0, .L8
  149 0004 FFF7FEFF 		bl	HAL_TIM_IRQHandler
  150              	.LVL1:
- 167:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN TIM3_IRQn 1 */
- 168:Src/stm32f0xx_it.c ****   
- 169:Src/stm32f0xx_it.c ****   pixel();
- 151              		.loc 1 169 0
+ 168:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN TIM3_IRQn 1 */
+ 169:Src/stm32f0xx_it.c ****   
+ 170:Src/stm32f0xx_it.c ****   pixel();
+ 151              		.loc 1 170 0
  152 0008 FFF7FEFF 		bl	pixel
  153              	.LVL2:
- 170:Src/stm32f0xx_it.c ****   
- 171:Src/stm32f0xx_it.c ****   /* USER CODE END TIM3_IRQn 1 */
- 172:Src/stm32f0xx_it.c **** }
- 154              		.loc 1 172 0
+ 171:Src/stm32f0xx_it.c ****   
+ 172:Src/stm32f0xx_it.c ****   /* USER CODE END TIM3_IRQn 1 */
+ 173:Src/stm32f0xx_it.c **** }
+ 154              		.loc 1 173 0
  155              		@ sp needed
  156 000c 10BD     		pop	{r4, pc}
  157              	.L9:
@@ -339,96 +340,347 @@ ARM GAS  /tmp/cchibEtC.s 			page 1
  160 0010 00000000 		.word	htim3
  161              		.cfi_endproc
  162              	.LFE42:
- 164              		.section	.text.USB_IRQHandler,"ax",%progbits
+ 164              		.section	.text.TIM14_IRQHandler,"ax",%progbits
  165              		.align	1
- 166              		.global	USB_IRQHandler
+ 166              		.global	TIM14_IRQHandler
  167              		.syntax unified
  168              		.code	16
  169              		.thumb_func
  170              		.fpu softvfp
- 172              	USB_IRQHandler:
+ 172              	TIM14_IRQHandler:
  173              	.LFB43:
- 173:Src/stm32f0xx_it.c **** 
- 174:Src/stm32f0xx_it.c **** /**
- 175:Src/stm32f0xx_it.c ****   * @brief This function handles USB global Interrupt / USB wake-up interrupt through EXTI line 18.
- 176:Src/stm32f0xx_it.c ****   */
- 177:Src/stm32f0xx_it.c **** void USB_IRQHandler(void)
- 178:Src/stm32f0xx_it.c **** {
- 174              		.loc 1 178 0
+ 174:Src/stm32f0xx_it.c **** 
+ 175:Src/stm32f0xx_it.c **** /**
+ 176:Src/stm32f0xx_it.c ****   * @brief This function handles TIM14 global interrupt.
+ 177:Src/stm32f0xx_it.c ****   */
+ 178:Src/stm32f0xx_it.c **** void TIM14_IRQHandler(void)
+ 179:Src/stm32f0xx_it.c **** {
+ 174              		.loc 1 179 0
  175              		.cfi_startproc
  176              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  /tmp/ccUNVaNN.s 			page 7
+
+
  177              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/cchibEtC.s 			page 7
-
-
  178 0000 10B5     		push	{r4, lr}
  179              	.LCFI2:
  180              		.cfi_def_cfa_offset 8
  181              		.cfi_offset 4, -8
  182              		.cfi_offset 14, -4
- 179:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN USB_IRQn 0 */
- 180:Src/stm32f0xx_it.c **** 
- 181:Src/stm32f0xx_it.c ****   /* USER CODE END USB_IRQn 0 */
- 182:Src/stm32f0xx_it.c ****   HAL_PCD_IRQHandler(&hpcd_USB_FS);
- 183              		.loc 1 182 0
- 184 0002 0248     		ldr	r0, .L11
- 185 0004 FFF7FEFF 		bl	HAL_PCD_IRQHandler
+ 180:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN TIM14_IRQn 0 */
+ 181:Src/stm32f0xx_it.c ****   static uint32_t counter = 0;
+ 182:Src/stm32f0xx_it.c ****   static uint8_t beep = 0;
+ 183:Src/stm32f0xx_it.c ****   
+ 184:Src/stm32f0xx_it.c ****   /* USER CODE END TIM14_IRQn 0 */
+ 185:Src/stm32f0xx_it.c ****   HAL_TIM_IRQHandler(&htim14);
+ 183              		.loc 1 185 0
+ 184 0002 2848     		ldr	r0, .L21
+ 185 0004 FFF7FEFF 		bl	HAL_TIM_IRQHandler
  186              	.LVL3:
- 183:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN USB_IRQn 1 */
- 184:Src/stm32f0xx_it.c **** 
- 185:Src/stm32f0xx_it.c ****   /* USER CODE END USB_IRQn 1 */
- 186:Src/stm32f0xx_it.c **** }
- 187              		.loc 1 186 0
- 188              		@ sp needed
- 189 0008 10BD     		pop	{r4, pc}
- 190              	.L12:
- 191 000a C046     		.align	2
- 192              	.L11:
- 193 000c 00000000 		.word	hpcd_USB_FS
- 194              		.cfi_endproc
- 195              	.LFE43:
- 197              		.text
- 198              	.Letext0:
- 199              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
- 200              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
- 201              		.file 4 "Drivers/CMSIS/Device/ST/STM32F0xx/Include/system_stm32f0xx.h"
- 202              		.file 5 "Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f070x6.h"
- 203              		.file 6 "/usr/arm-none-eabi/include/sys/lock.h"
- 204              		.file 7 "/usr/arm-none-eabi/include/sys/_types.h"
- 205              		.file 8 "/usr/lib/gcc/arm-none-eabi/7.3.1/include/stddef.h"
- 206              		.file 9 "/usr/arm-none-eabi/include/sys/reent.h"
- 207              		.file 10 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_def.h"
- 208              		.file 11 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_dma.h"
- 209              		.file 12 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_pcd.h"
- 210              		.file 13 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim.h"
- 211              		.file 14 "Inc/main.h"
- 212              		.file 15 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h"
-ARM GAS  /tmp/cchibEtC.s 			page 8
+ 186:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN TIM14_IRQn 1 */
+ 187:Src/stm32f0xx_it.c **** 
+ 188:Src/stm32f0xx_it.c ****   counter++;
+ 187              		.loc 1 188 0
+ 188 0008 274A     		ldr	r2, .L21+4
+ 189 000a 1368     		ldr	r3, [r2]
+ 190 000c 0133     		adds	r3, r3, #1
+ 191 000e 1360     		str	r3, [r2]
+ 189:Src/stm32f0xx_it.c ****   
+ 190:Src/stm32f0xx_it.c ****   if (counter > 250){
+ 192              		.loc 1 190 0
+ 193 0010 FA2B     		cmp	r3, #250
+ 194 0012 0BD9     		bls	.L11
+ 191:Src/stm32f0xx_it.c ****     beep = 1;
+ 195              		.loc 1 191 0
+ 196 0014 254B     		ldr	r3, .L21+8
+ 197 0016 0122     		movs	r2, #1
+ 198 0018 1A70     		strb	r2, [r3]
+ 199              	.L12:
+ 192:Src/stm32f0xx_it.c ****   }
+ 193:Src/stm32f0xx_it.c ****   else if (counter > 500) {
+ 194:Src/stm32f0xx_it.c ****     beep = 0;
+ 195:Src/stm32f0xx_it.c ****   }
+ 196:Src/stm32f0xx_it.c ****   else if (counter > 750){
+ 197:Src/stm32f0xx_it.c ****     beep = 1;
+ 198:Src/stm32f0xx_it.c ****   }
+ 199:Src/stm32f0xx_it.c ****   else if (counter> 1000) {
+ 200:Src/stm32f0xx_it.c ****     beep = 0;
+ 201:Src/stm32f0xx_it.c ****   }
+ 202:Src/stm32f0xx_it.c ****   else if (counter > 1250){
+ 203:Src/stm32f0xx_it.c ****     beep = 1;
+ 204:Src/stm32f0xx_it.c ****   }
+ 205:Src/stm32f0xx_it.c ****   else if (counter> 1500) {
+ 206:Src/stm32f0xx_it.c ****     beep = 0;
+ 207:Src/stm32f0xx_it.c ****   } 
+ 208:Src/stm32f0xx_it.c ****   else if (counter> 1750) {
+ 209:Src/stm32f0xx_it.c ****     beep = 1;
+ 210:Src/stm32f0xx_it.c ****   } 
+ 211:Src/stm32f0xx_it.c ****    else if (counter> 2250) {
+ 212:Src/stm32f0xx_it.c ****     beep = 0;
+ 213:Src/stm32f0xx_it.c ****     counter = 0;
+ARM GAS  /tmp/ccUNVaNN.s 			page 8
+
+
+ 214:Src/stm32f0xx_it.c ****   } 
+ 215:Src/stm32f0xx_it.c ****   
+ 216:Src/stm32f0xx_it.c ****   
+ 217:Src/stm32f0xx_it.c ****   if (allow_buzzer && beep) {
+ 200              		.loc 1 217 0
+ 201 001a 254B     		ldr	r3, .L21+12
+ 202 001c 1B78     		ldrb	r3, [r3]
+ 203 001e 002B     		cmp	r3, #0
+ 204 0020 03D0     		beq	.L10
+ 205              		.loc 1 217 0 is_stmt 0 discriminator 1
+ 206 0022 224B     		ldr	r3, .L21+8
+ 207 0024 1B78     		ldrb	r3, [r3]
+ 208 0026 002B     		cmp	r3, #0
+ 209 0028 35D1     		bne	.L20
+ 210              	.L10:
+ 218:Src/stm32f0xx_it.c ****     HAL_GPIO_TogglePin(BUZZER_GPIO_Port, BUZZER_Pin);
+ 219:Src/stm32f0xx_it.c ****   }
+ 220:Src/stm32f0xx_it.c ****   
+ 221:Src/stm32f0xx_it.c ****   
+ 222:Src/stm32f0xx_it.c ****   /* USER CODE END TIM14_IRQn 1 */
+ 223:Src/stm32f0xx_it.c **** }
+ 211              		.loc 1 223 0 is_stmt 1
+ 212              		@ sp needed
+ 213 002a 10BD     		pop	{r4, pc}
+ 214              	.L11:
+ 193:Src/stm32f0xx_it.c ****     beep = 0;
+ 215              		.loc 1 193 0
+ 216 002c FA22     		movs	r2, #250
+ 217 002e 5200     		lsls	r2, r2, #1
+ 218 0030 9342     		cmp	r3, r2
+ 219 0032 03D9     		bls	.L13
+ 194:Src/stm32f0xx_it.c ****   }
+ 220              		.loc 1 194 0
+ 221 0034 1D4B     		ldr	r3, .L21+8
+ 222 0036 0022     		movs	r2, #0
+ 223 0038 1A70     		strb	r2, [r3]
+ 224 003a EEE7     		b	.L12
+ 225              	.L13:
+ 196:Src/stm32f0xx_it.c ****     beep = 1;
+ 226              		.loc 1 196 0
+ 227 003c 1D4A     		ldr	r2, .L21+16
+ 228 003e 9342     		cmp	r3, r2
+ 229 0040 03D9     		bls	.L14
+ 197:Src/stm32f0xx_it.c ****   }
+ 230              		.loc 1 197 0
+ 231 0042 1A4B     		ldr	r3, .L21+8
+ 232 0044 0122     		movs	r2, #1
+ 233 0046 1A70     		strb	r2, [r3]
+ 234 0048 E7E7     		b	.L12
+ 235              	.L14:
+ 199:Src/stm32f0xx_it.c ****     beep = 0;
+ 236              		.loc 1 199 0
+ 237 004a FA22     		movs	r2, #250
+ 238 004c 9200     		lsls	r2, r2, #2
+ 239 004e 9342     		cmp	r3, r2
+ 240 0050 03D9     		bls	.L15
+ 200:Src/stm32f0xx_it.c ****   }
+ARM GAS  /tmp/ccUNVaNN.s 			page 9
+
+
+ 241              		.loc 1 200 0
+ 242 0052 164B     		ldr	r3, .L21+8
+ 243 0054 0022     		movs	r2, #0
+ 244 0056 1A70     		strb	r2, [r3]
+ 245 0058 DFE7     		b	.L12
+ 246              	.L15:
+ 202:Src/stm32f0xx_it.c ****     beep = 1;
+ 247              		.loc 1 202 0
+ 248 005a 174A     		ldr	r2, .L21+20
+ 249 005c 9342     		cmp	r3, r2
+ 250 005e 03D9     		bls	.L16
+ 203:Src/stm32f0xx_it.c ****   }
+ 251              		.loc 1 203 0
+ 252 0060 124B     		ldr	r3, .L21+8
+ 253 0062 0122     		movs	r2, #1
+ 254 0064 1A70     		strb	r2, [r3]
+ 255 0066 D8E7     		b	.L12
+ 256              	.L16:
+ 205:Src/stm32f0xx_it.c ****     beep = 0;
+ 257              		.loc 1 205 0
+ 258 0068 144A     		ldr	r2, .L21+24
+ 259 006a 9342     		cmp	r3, r2
+ 260 006c 03D9     		bls	.L17
+ 206:Src/stm32f0xx_it.c ****   } 
+ 261              		.loc 1 206 0
+ 262 006e 0F4B     		ldr	r3, .L21+8
+ 263 0070 0022     		movs	r2, #0
+ 264 0072 1A70     		strb	r2, [r3]
+ 265 0074 D1E7     		b	.L12
+ 266              	.L17:
+ 208:Src/stm32f0xx_it.c ****     beep = 1;
+ 267              		.loc 1 208 0
+ 268 0076 124A     		ldr	r2, .L21+28
+ 269 0078 9342     		cmp	r3, r2
+ 270 007a 03D9     		bls	.L18
+ 209:Src/stm32f0xx_it.c ****   } 
+ 271              		.loc 1 209 0
+ 272 007c 0B4B     		ldr	r3, .L21+8
+ 273 007e 0122     		movs	r2, #1
+ 274 0080 1A70     		strb	r2, [r3]
+ 275 0082 CAE7     		b	.L12
+ 276              	.L18:
+ 211:Src/stm32f0xx_it.c ****     beep = 0;
+ 277              		.loc 1 211 0
+ 278 0084 0F4A     		ldr	r2, .L21+32
+ 279 0086 9342     		cmp	r3, r2
+ 280 0088 C7D9     		bls	.L12
+ 212:Src/stm32f0xx_it.c ****     counter = 0;
+ 281              		.loc 1 212 0
+ 282 008a 0023     		movs	r3, #0
+ 283 008c 074A     		ldr	r2, .L21+8
+ 284 008e 1370     		strb	r3, [r2]
+ 213:Src/stm32f0xx_it.c ****   } 
+ 285              		.loc 1 213 0
+ 286 0090 054A     		ldr	r2, .L21+4
+ 287 0092 1360     		str	r3, [r2]
+ 288 0094 C1E7     		b	.L12
+ARM GAS  /tmp/ccUNVaNN.s 			page 10
+
+
+ 289              	.L20:
+ 218:Src/stm32f0xx_it.c ****   }
+ 290              		.loc 1 218 0
+ 291 0096 8021     		movs	r1, #128
+ 292 0098 4901     		lsls	r1, r1, #5
+ 293 009a 0B48     		ldr	r0, .L21+36
+ 294 009c FFF7FEFF 		bl	HAL_GPIO_TogglePin
+ 295              	.LVL4:
+ 296              		.loc 1 223 0
+ 297 00a0 C3E7     		b	.L10
+ 298              	.L22:
+ 299 00a2 C046     		.align	2
+ 300              	.L21:
+ 301 00a4 00000000 		.word	htim14
+ 302 00a8 00000000 		.word	.LANCHOR0
+ 303 00ac 00000000 		.word	.LANCHOR1
+ 304 00b0 00000000 		.word	allow_buzzer
+ 305 00b4 EE020000 		.word	750
+ 306 00b8 E2040000 		.word	1250
+ 307 00bc DC050000 		.word	1500
+ 308 00c0 D6060000 		.word	1750
+ 309 00c4 CA080000 		.word	2250
+ 310 00c8 00040048 		.word	1207960576
+ 311              		.cfi_endproc
+ 312              	.LFE43:
+ 314              		.section	.text.TIM16_IRQHandler,"ax",%progbits
+ 315              		.align	1
+ 316              		.global	TIM16_IRQHandler
+ 317              		.syntax unified
+ 318              		.code	16
+ 319              		.thumb_func
+ 320              		.fpu softvfp
+ 322              	TIM16_IRQHandler:
+ 323              	.LFB44:
+ 224:Src/stm32f0xx_it.c **** 
+ 225:Src/stm32f0xx_it.c **** /**
+ 226:Src/stm32f0xx_it.c ****   * @brief This function handles TIM16 global interrupt.
+ 227:Src/stm32f0xx_it.c ****   */
+ 228:Src/stm32f0xx_it.c **** void TIM16_IRQHandler(void)
+ 229:Src/stm32f0xx_it.c **** {
+ 324              		.loc 1 229 0
+ 325              		.cfi_startproc
+ 326              		@ args = 0, pretend = 0, frame = 0
+ 327              		@ frame_needed = 0, uses_anonymous_args = 0
+ 328 0000 10B5     		push	{r4, lr}
+ 329              	.LCFI3:
+ 330              		.cfi_def_cfa_offset 8
+ 331              		.cfi_offset 4, -8
+ 332              		.cfi_offset 14, -4
+ 230:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN TIM16_IRQn 0 */
+ 231:Src/stm32f0xx_it.c **** 
+ 232:Src/stm32f0xx_it.c ****   /* USER CODE END TIM16_IRQn 0 */
+ 233:Src/stm32f0xx_it.c ****   HAL_TIM_IRQHandler(&htim16);
+ 333              		.loc 1 233 0
+ 334 0002 0348     		ldr	r0, .L24
+ 335 0004 FFF7FEFF 		bl	HAL_TIM_IRQHandler
+ 336              	.LVL5:
+ARM GAS  /tmp/ccUNVaNN.s 			page 11
+
+
+ 234:Src/stm32f0xx_it.c ****   /* USER CODE BEGIN TIM16_IRQn 1 */
+ 235:Src/stm32f0xx_it.c ****   
+ 236:Src/stm32f0xx_it.c ****   second_tick();
+ 337              		.loc 1 236 0
+ 338 0008 FFF7FEFF 		bl	second_tick
+ 339              	.LVL6:
+ 237:Src/stm32f0xx_it.c ****   
+ 238:Src/stm32f0xx_it.c ****   /* USER CODE END TIM16_IRQn 1 */
+ 239:Src/stm32f0xx_it.c **** }
+ 340              		.loc 1 239 0
+ 341              		@ sp needed
+ 342 000c 10BD     		pop	{r4, pc}
+ 343              	.L25:
+ 344 000e C046     		.align	2
+ 345              	.L24:
+ 346 0010 00000000 		.word	htim16
+ 347              		.cfi_endproc
+ 348              	.LFE44:
+ 350              		.comm	allow_buzzer,1,1
+ 351              		.section	.bss.beep.6765,"aw",%nobits
+ 352              		.set	.LANCHOR1,. + 0
+ 355              	beep.6765:
+ 356 0000 00       		.space	1
+ 357              		.section	.bss.counter.6764,"aw",%nobits
+ 358              		.align	2
+ 359              		.set	.LANCHOR0,. + 0
+ 362              	counter.6764:
+ 363 0000 00000000 		.space	4
+ 364              		.text
+ 365              	.Letext0:
+ 366              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 367              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 368              		.file 4 "Drivers/CMSIS/Device/ST/STM32F0xx/Include/system_stm32f0xx.h"
+ 369              		.file 5 "Drivers/CMSIS/Device/ST/STM32F0xx/Include/stm32f070x6.h"
+ 370              		.file 6 "/usr/arm-none-eabi/include/sys/lock.h"
+ 371              		.file 7 "/usr/arm-none-eabi/include/sys/_types.h"
+ 372              		.file 8 "/usr/lib/gcc/arm-none-eabi/7.3.1/include/stddef.h"
+ 373              		.file 9 "/usr/arm-none-eabi/include/sys/reent.h"
+ 374              		.file 10 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_def.h"
+ 375              		.file 11 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_dma.h"
+ 376              		.file 12 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim.h"
+ 377              		.file 13 "Inc/main.h"
+ 378              		.file 14 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_gpio.h"
+ 379              		.file 15 "Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h"
+ARM GAS  /tmp/ccUNVaNN.s 			page 12
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32f0xx_it.c
-     /tmp/cchibEtC.s:16     .text.NMI_Handler:0000000000000000 $t
-     /tmp/cchibEtC.s:23     .text.NMI_Handler:0000000000000000 NMI_Handler
-     /tmp/cchibEtC.s:38     .text.HardFault_Handler:0000000000000000 $t
-     /tmp/cchibEtC.s:45     .text.HardFault_Handler:0000000000000000 HardFault_Handler
-     /tmp/cchibEtC.s:59     .text.SVC_Handler:0000000000000000 $t
-     /tmp/cchibEtC.s:66     .text.SVC_Handler:0000000000000000 SVC_Handler
-     /tmp/cchibEtC.s:80     .text.PendSV_Handler:0000000000000000 $t
-     /tmp/cchibEtC.s:87     .text.PendSV_Handler:0000000000000000 PendSV_Handler
-     /tmp/cchibEtC.s:101    .text.SysTick_Handler:0000000000000000 $t
-     /tmp/cchibEtC.s:108    .text.SysTick_Handler:0000000000000000 SysTick_Handler
-     /tmp/cchibEtC.s:129    .text.TIM3_IRQHandler:0000000000000000 $t
-     /tmp/cchibEtC.s:136    .text.TIM3_IRQHandler:0000000000000000 TIM3_IRQHandler
-     /tmp/cchibEtC.s:160    .text.TIM3_IRQHandler:0000000000000010 $d
-     /tmp/cchibEtC.s:165    .text.USB_IRQHandler:0000000000000000 $t
-     /tmp/cchibEtC.s:172    .text.USB_IRQHandler:0000000000000000 USB_IRQHandler
-     /tmp/cchibEtC.s:193    .text.USB_IRQHandler:000000000000000c $d
+     /tmp/ccUNVaNN.s:16     .text.NMI_Handler:0000000000000000 $t
+     /tmp/ccUNVaNN.s:23     .text.NMI_Handler:0000000000000000 NMI_Handler
+     /tmp/ccUNVaNN.s:38     .text.HardFault_Handler:0000000000000000 $t
+     /tmp/ccUNVaNN.s:45     .text.HardFault_Handler:0000000000000000 HardFault_Handler
+     /tmp/ccUNVaNN.s:59     .text.SVC_Handler:0000000000000000 $t
+     /tmp/ccUNVaNN.s:66     .text.SVC_Handler:0000000000000000 SVC_Handler
+     /tmp/ccUNVaNN.s:80     .text.PendSV_Handler:0000000000000000 $t
+     /tmp/ccUNVaNN.s:87     .text.PendSV_Handler:0000000000000000 PendSV_Handler
+     /tmp/ccUNVaNN.s:101    .text.SysTick_Handler:0000000000000000 $t
+     /tmp/ccUNVaNN.s:108    .text.SysTick_Handler:0000000000000000 SysTick_Handler
+     /tmp/ccUNVaNN.s:129    .text.TIM3_IRQHandler:0000000000000000 $t
+     /tmp/ccUNVaNN.s:136    .text.TIM3_IRQHandler:0000000000000000 TIM3_IRQHandler
+     /tmp/ccUNVaNN.s:160    .text.TIM3_IRQHandler:0000000000000010 $d
+     /tmp/ccUNVaNN.s:165    .text.TIM14_IRQHandler:0000000000000000 $t
+     /tmp/ccUNVaNN.s:172    .text.TIM14_IRQHandler:0000000000000000 TIM14_IRQHandler
+     /tmp/ccUNVaNN.s:301    .text.TIM14_IRQHandler:00000000000000a4 $d
+                            *COM*:0000000000000001 allow_buzzer
+     /tmp/ccUNVaNN.s:315    .text.TIM16_IRQHandler:0000000000000000 $t
+     /tmp/ccUNVaNN.s:322    .text.TIM16_IRQHandler:0000000000000000 TIM16_IRQHandler
+     /tmp/ccUNVaNN.s:346    .text.TIM16_IRQHandler:0000000000000010 $d
+     /tmp/ccUNVaNN.s:355    .bss.beep.6765:0000000000000000 beep.6765
+     /tmp/ccUNVaNN.s:356    .bss.beep.6765:0000000000000000 $d
+     /tmp/ccUNVaNN.s:358    .bss.counter.6764:0000000000000000 $d
+     /tmp/ccUNVaNN.s:362    .bss.counter.6764:0000000000000000 counter.6764
 
 UNDEFINED SYMBOLS
 HAL_IncTick
 HAL_TIM_IRQHandler
 pixel
 htim3
-HAL_PCD_IRQHandler
-hpcd_USB_FS
+HAL_GPIO_TogglePin
+htim14
+second_tick
+htim16

@@ -71,8 +71,9 @@
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
-extern PCD_HandleTypeDef hpcd_USB_FS;
 extern TIM_HandleTypeDef htim3;
+extern TIM_HandleTypeDef htim14;
+extern TIM_HandleTypeDef htim16;
 /* USER CODE BEGIN EV */
 
 /* USER CODE END EV */
@@ -172,17 +173,69 @@ void TIM3_IRQHandler(void)
 }
 
 /**
-  * @brief This function handles USB global Interrupt / USB wake-up interrupt through EXTI line 18.
+  * @brief This function handles TIM14 global interrupt.
   */
-void USB_IRQHandler(void)
+void TIM14_IRQHandler(void)
 {
-  /* USER CODE BEGIN USB_IRQn 0 */
+  /* USER CODE BEGIN TIM14_IRQn 0 */
+  static uint32_t counter = 0;
+  static uint8_t beep = 0;
+  
+  /* USER CODE END TIM14_IRQn 0 */
+  HAL_TIM_IRQHandler(&htim14);
+  /* USER CODE BEGIN TIM14_IRQn 1 */
 
-  /* USER CODE END USB_IRQn 0 */
-  HAL_PCD_IRQHandler(&hpcd_USB_FS);
-  /* USER CODE BEGIN USB_IRQn 1 */
+  counter++;
+  
+  if (counter > 250){
+    beep = 1;
+  }
+  else if (counter > 500) {
+    beep = 0;
+  }
+  else if (counter > 750){
+    beep = 1;
+  }
+  else if (counter> 1000) {
+    beep = 0;
+  }
+  else if (counter > 1250){
+    beep = 1;
+  }
+  else if (counter> 1500) {
+    beep = 0;
+  } 
+  else if (counter> 1750) {
+    beep = 1;
+  } 
+   else if (counter> 2250) {
+    beep = 0;
+    counter = 0;
+  } 
+  
+  
+  if (allow_buzzer && beep) {
+    HAL_GPIO_TogglePin(BUZZER_GPIO_Port, BUZZER_Pin);
+  }
+  
+  
+  /* USER CODE END TIM14_IRQn 1 */
+}
 
-  /* USER CODE END USB_IRQn 1 */
+/**
+  * @brief This function handles TIM16 global interrupt.
+  */
+void TIM16_IRQHandler(void)
+{
+  /* USER CODE BEGIN TIM16_IRQn 0 */
+
+  /* USER CODE END TIM16_IRQn 0 */
+  HAL_TIM_IRQHandler(&htim16);
+  /* USER CODE BEGIN TIM16_IRQn 1 */
+  
+  second_tick();
+  
+  /* USER CODE END TIM16_IRQn 1 */
 }
 
 /* USER CODE BEGIN 1 */

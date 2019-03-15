@@ -67,7 +67,7 @@ extern "C" {
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
-
+uint8_t allow_buzzer;
 /* USER CODE END ET */
 
 /* Exported constants --------------------------------------------------------*/
@@ -85,6 +85,7 @@ void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
 void pixel(void);
+void second_tick(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
