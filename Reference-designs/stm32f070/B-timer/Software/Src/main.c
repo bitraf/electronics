@@ -135,7 +135,7 @@ void set_led(int x_pix, int y_pix) {
     GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
     
-    // >>> IMPORTANT: LED orientation //
+    // >>> @IMPORTANT //
     // >>> Use these two lines if you mounted the LED's pointing up ...
     HAL_GPIO_WritePin(GPIOA, y, GPIO_PIN_RESET);
     HAL_GPIO_WritePin(GPIOA, x, GPIO_PIN_SET);
