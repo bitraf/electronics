@@ -9,4 +9,4 @@ There is also a list of referece designs made in KiCad, such as step down conver
 hello world blinky led based on STM32 uC, a USB hub etc. These are meant to be used 
 as building blocks for ne designs for both members and others. 
 
-
+For B-Timer, see _/Reference-designs/stm32f070/B-timer_.
